@@ -1,0 +1,13 @@
+pandas
+numpy
+scikit-learn
+nltk
+transformers
+torch
+fastapi
+uvicorn
+streamlit
+python-multipart
+kaggle
+beautifulsoup4
+
