@@ -1,83 +1,72 @@
-📂 Customer Feedback Analyzer
+# 📂 Customer Feedback Analyzer  
 
-Un sistema completo de análisis de opiniones de clientes con NLP, que combina modelos clásicos y modernos para:
+Un sistema completo de **análisis de opiniones de clientes con NLP**, que combina modelos clásicos y modernos para:  
+- Clasificar reseñas en **positivas / negativas / neutras**.  
+- Detectar **temas recurrentes** en grandes volúmenes de feedback.  
+- Generar **resúmenes ejecutivos automáticos** para managers.  
+- Exponer resultados vía **API REST (FastAPI)** y **Dashboard interactivo (Streamlit)**.  
 
-Clasificar reseñas en positivas / negativas / neutras.
+---
 
-Detectar temas recurrentes en grandes volúmenes de feedback.
+## 🎯 Descripción del Proyecto  
 
-Generar resúmenes ejecutivos automáticos para managers.
+Este proyecto implementa un pipeline profesional de **Procesamiento de Lenguaje Natural (NLP)** aplicable en contextos empresariales de e-commerce, SaaS o restauración.  
 
-Exponer resultados vía API REST (FastAPI) y Dashboard interactivo (Streamlit).
+Incluye tres componentes principales:  
 
-🎯 Descripción del Proyecto
+1. **Análisis de Sentimientos**: Comparativa entre un modelo clásico (TF-IDF + Logistic Regression) y un modelo moderno (DistilBERT fine-tuneado).  
+2. **Detección de Temas**: Topic modeling con BERTopic sobre embeddings de `all-MiniLM-L6-v2`.  
+3. **Resúmenes Automáticos**: Uso de `facebook/bart-large-cnn` para generar informes ejecutivos.  
 
-Este proyecto implementa un pipeline profesional de Procesamiento de Lenguaje Natural (NLP) aplicable en contextos empresariales de e-commerce, SaaS o restauración.
+---
 
-Incluye tres componentes principales:
+## ✨ Características  
 
-Análisis de Sentimientos: Comparativa entre un modelo clásico (TF-IDF + Logistic Regression) y un modelo moderno (DistilBERT fine-tuneado).
+- 🔍 Clasificación de sentimientos (positivo, negativo, neutro)  
+- 🧩 Detección automática de temas  
+- 📑 Resúmenes ejecutivos  
+- ⚙️ API REST con FastAPI  
+- 📊 Dashboard interactivo con Streamlit  
+- 🐳 Despliegue con Docker  
+- 🔄 MLOps con DVC  
 
-Detección de Temas: Topic modeling con BERTopic sobre embeddings de all-MiniLM-L6-v2.
+---
 
-Resúmenes Automáticos: Uso de facebook/bart-large-cnn para generar informes ejecutivos.
+## 🔧 Tecnologías Utilizadas  
 
-✨ Características Principales
+| Categoría       | Tecnologías |
+|-----------------|-------------|
+| Lenguaje        | Python 3.11 |
+| ML clásico      | scikit-learn |
+| NLP moderno     | Hugging Face (DistilBERT, BART) |
+| Topic Modeling  | BERTopic |
+| Backend         | FastAPI |
+| Frontend        | Streamlit |
+| Visualización   | matplotlib, seaborn, plotly |
+| MLOps           | DVC |
+| Contenedores    | Docker, docker-compose |
+| CI/CD           | GitHub Actions |
 
-🔍 Clasificación de Sentimientos: positivo, negativo, neutro.
+---
 
-🧩 Topic Modeling: descubre automáticamente temas frecuentes en opiniones.
+## 📊 Dataset  
 
-📑 Resúmenes Ejecutivos: extrae los puntos clave de miles de reseñas.
+- **Fuente**: [Amazon Fine Food Reviews (Kaggle)](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews)  
+- **Tamaño**: 500,000 reseñas (MVP usa 100,000)  
+- **Características**: texto de la reseña, rating (1–5 estrellas), ID de usuario y producto  
 
-⚙️ Backend API REST: endpoints listos para integrar en otros sistemas.
+---
 
-📊 Dashboard Interactivo: visualizaciones intuitivas para managers.
+## 🚀 Instalación  
 
-🐳 Despliegue con Docker: API y dashboard en contenedores reproducibles.
+### 🔹 Prerrequisitos  
+- Python 3.11  
+- Git  
+- Docker (opcional, recomendado)  
 
-🔄 MLOps con DVC: versionado de datasets y modelos.
+### 🔹 Instalación Manual  
 
-🔧 Tecnologías Utilizadas
-
-Lenguaje: Python 3.11
-
-Machine Learning Clásico: scikit-learn
-
-NLP Moderno: Hugging Face Transformers (DistilBERT, BART)
-
-Topic Modeling: BERTopic
-
-Backend: FastAPI
-
-Frontend: Streamlit
-
-Visualización: matplotlib, seaborn, plotly
-
-MLOps: DVC
-
-Contenedores: Docker, docker-compose
-
-CI/CD: GitHub Actions
-
-📊 Dataset
-
-Fuente: Amazon Fine Food Reviews (Kaggle)
-
-Tamaño: 500,000 reseñas de productos → MVP usa 100,000 reseñas muestreadas.
-
-Características: texto de la reseña, rating (1–5 estrellas), ID de usuario y producto.
-
-🚀 Instalación y Configuración
-Prerrequisitos
-
-Python 3.11
-
-Git
-
-Docker (opcional, recomendado para despliegue rápido)
-
-Instalación Manual
+```bash
 # Clonar el repositorio
 git clone <repository-url>
 cd customer_feedback_analyzer
@@ -92,11 +81,10 @@ pip install -r requirements.txt
 
 # Descargar recursos de NLTK
 python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt'); nltk.download('wordnet')"
-
-Instalación con Docker
+🔹 Instalación con Docker
+bash
+Copiar código
 docker-compose up --build
-
-
 Esto levanta:
 
 API en http://localhost:8000
@@ -104,30 +92,32 @@ API en http://localhost:8000
 Dashboard en http://localhost:8501
 
 🎮 Uso
-1. Ejecutar API REST
+1️⃣ API REST
+bash
+Copiar código
 cd app/api
 uvicorn main:app --reload
-
-
 Endpoints disponibles:
 
-POST /predict → análisis de sentimiento.
+POST /predict → análisis de sentimiento
 
-POST /topics → detección de temas.
+POST /topics → detección de temas
 
-POST /summarize → resumen automático.
+POST /summarize → resumen automático
 
-GET /health → estado de la API.
+GET /health → estado de la API
 
-Ejemplo:
+Ejemplo de request:
 
+bash
+Copiar código
 curl -X POST http://localhost:8000/predict \
 -H "Content-Type: application/json" \
 -d '{"text": "El envío fue rápido y el producto excelente"}'
+Ejemplo de respuesta:
 
-
-Respuesta:
-
+json
+Copiar código
 {
   "sentiment": "positivo",
   "confidence": 0.92,
@@ -137,47 +127,35 @@ Respuesta:
     "positivo": 0.92
   }
 }
-
-2. Ejecutar Dashboard
+2️⃣ Dashboard
+bash
+Copiar código
 cd app/dashboard
 streamlit run app.py
-
-
 Disponible en http://localhost:8501.
 
 Páginas incluidas:
 
-Sentiment Analysis → análisis individual de reseñas.
+Sentiment Analysis
 
-Topics → clustering de opiniones en temas.
+Topics
 
-Summaries → resumen automático de feedback.
+Summaries
 
-Insights → gráficos empresariales.
+Insights
 
-📈 Métricas y Evaluación
+📈 Métricas
+Modelo	Accuracy	F1-score
+TF-IDF + Logistic Regression	~79%	~0.78
+DistilBERT Fine-tuneado	~87%	~0.86
 
-Baseline LogReg (TF-IDF)
+BERTopic: ~12 temas coherentes detectados (ej. “envío”, “precio”, “calidad”).
 
-Accuracy: ~79%
-
-F1-score: ~0.78
-
-DistilBERT Fine-tuneado
-
-Accuracy: ~87%
-
-F1-score: ~0.86
-
-BERTopic
-
-~12 temas coherentes detectados (ej: “envío”, “precio”, “calidad”).
-
-BART Summarizer
-
-Genera resúmenes ejecutivos comprensibles con ~200 palabras.
+BART Summarizer: genera resúmenes ejecutivos de ~200 palabras.
 
 🏗️ Estructura del Proyecto
+css
+Copiar código
 customer_feedback_analyzer/
 ├── data/                  
 │   ├── raw/              
@@ -209,41 +187,25 @@ customer_feedback_analyzer/
 ├── dvc.yaml
 ├── requirements.txt
 └── README.md
-
 🌐 Casos de Uso
+E-commerce: detectar quejas sobre envíos o calidad
 
-E-commerce
+Restauración: identificar temas como “tiempo de espera”, “sabor”
 
-Detectar quejas sobre envíos o calidad de productos.
-
-Resumir insights clave de miles de reseñas al mes.
-
-Restauración
-
-Identificar temas recurrentes en opiniones (ej. “tiempo de espera”, “sabor”).
-
-SaaS / Software
-
-Analizar tickets de soporte.
-
-Detectar problemas frecuentes en el producto.
+SaaS: analizar tickets de soporte y problemas frecuentes
 
 🔄 MLOps
+DVC: versionado de datasets y modelos
 
-DVC: versionado de datasets y modelos.
+Docker: despliegue reproducible
 
-Docker: despliegue reproducible de API + dashboard.
-
-CI/CD: GitHub Actions para testeo y construcción automática.
+CI/CD: GitHub Actions para testeo y construcción automática
 
 🧪 Testing
+Ejecutar pruebas unitarias:
 
-Pruebas unitarias disponibles en tests/.
-
-Ejecutar tests:
-
+bash
+Copiar código
 pytest
-
 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver archivo LICENSE.
+Este proyecto está bajo la Licencia MIT.
