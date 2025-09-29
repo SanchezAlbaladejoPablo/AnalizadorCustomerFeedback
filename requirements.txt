@@ -11,3 +11,9 @@ python-multipart
 kaggle
 beautifulsoup4
 
+
+
+jupyter
+matplotlib
+seaborn
+
